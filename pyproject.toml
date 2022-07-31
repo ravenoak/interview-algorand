@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "interview-algorand"
+version = "0.1.0"
+description = "Interview project for Algorand"
+authors = ["Caitlyn O'Hanna <caitlyn.ohanna@gmail.com>"]
+readme = "README.md"
+packages = [{include = "interview_algorand"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+pydantic = {extras = ["dotenv"], version = "^1.9.1"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.1.2"
+pytest-black = "^0.3.12"
+pytest-bdd = "^6.0.1"
+ipython = "^8.4.0"
+
+[tool.poetry.scripts]
+gh_issues_cli = 'interview_algorand.console:run'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
