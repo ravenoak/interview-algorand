@@ -8,10 +8,13 @@ from . import config
 
 
 def get_issues(repo: str, settings: config.Settings) -> dict:
-    """Get the issues for the given repo."""
+    """Get the open issues for the given repo."""
     logger = logging.getLogger(__name__)
 
-    url = f'https://api.github.com/repos/{repo}/issues'
+    # Defaults to 'open', but since the requirements for this exercise said
+    # 'open', we'll explicitly set it to 'open'.
+    # See: https://docs.github.com/en/rest/issues/issues#list-repository-issues
+    url = f'https://api.github.com/repos/{repo}/issues?state=open'
     try:
         logger.debug(f'GET {url}')
         response = requests.get(
