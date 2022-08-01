@@ -79,3 +79,6 @@ You can also use `.env` file to set the environment variables.
   to be the new direction of package management.
 * I'm very much under-utilising pydantic, but it has nice settings helpers.
 * Tests? There's probably another round of refactoring that can be done with tests. I YOLO'd it this time :-/...
+* No validation on input, repo name requires to be in format of "{owner}/{repo}", can add validation via pydantic.
+* No wrapping of errors to make problems encountered more obvious.
+
