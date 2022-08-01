@@ -7,14 +7,14 @@ from requests.exceptions import HTTPError
 from . import config
 
 
-def get_issues(repo: str, settings: config.Settings) -> dict:
+def get_issues(settings: config.Settings) -> dict:
     """Get the open issues for the given repo."""
     logger = logging.getLogger(__name__)
 
     # Defaults to 'open', but since the requirements for this exercise said
     # 'open', we'll explicitly set it to 'open'.
     # See: https://docs.github.com/en/rest/issues/issues#list-repository-issues
-    url = f'https://api.github.com/repos/{repo}/issues?state=open'
+    url = f'{settings.gh_url}/repos/{settings.repo}/issues?state=open'
     try:
         logger.debug(f'GET {url}')
         response = requests.get(

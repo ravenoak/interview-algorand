@@ -11,16 +11,15 @@ from interview_algorand import github
 
 class ConsoleDisplay:
 
-    def __init__(self, args: argparse.Namespace, settings: config.Settings):
+    def __init__(self, settings: config.Settings):
         """Initialize the console display."""
-        self.args = args
         self.logger = logging.getLogger(__name__)
         self.settings = settings
 
     def display(self):
         """Display the issues for the given repo."""
         self.logger.debug("Retrieving issues")
-        issues = github.get_issues(self.args.repo, self.settings)
+        issues = github.get_issues(self.settings)
         json.dump(issues, fp=sys.stdout)
 
 
@@ -43,8 +42,8 @@ def setup_logging(args: argparse.Namespace):
 def run():
     """Run the program."""
     args = parse_args()
-    settings = config.get_config()
-    display = ConsoleDisplay(args, settings)
+    settings = config.get_config(args)
+    display = ConsoleDisplay(settings)
     display.display()
 
 
